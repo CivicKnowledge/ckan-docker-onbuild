@@ -1,7 +1,8 @@
 
 
 # SITE_URL=data.sandiegodata.org
-# ADMIN_USER_KEY=admin
+# ADMIN_USER_NAME=ckadmin
+# ADMIN_USER_KEY=adminkey
 # ADMIN_USER_PASS=adminpw
 # ADMIN_USER_EMAIL=bob@example.com
 # VIRTUAL_HOST=$(SITE_URL)

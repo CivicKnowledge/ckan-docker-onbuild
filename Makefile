@@ -24,10 +24,13 @@ ENV = -e SITE_URL=$(SITE_URL) -eADMIN_USER_KEY=$(ADMIN_USER_KEY) -eADMIN_USER_PA
 
 include Makefile.local
 
-.PHONY: build push shell run start stop restart reload rm rmf release backup
+.PHONY: build rebuild push shell run start stop restart reload rm rmf release backup
 
 build:
 	$(DOCKER) build -t $(NS)/$(REPO):$(VERSION) .
+
+rebuild:
+	$(DOCKER) build --no-cache -t $(NS)/$(REPO):$(VERSION) .
 
 push:
 	$(DOCKER) push $(NS)/$(REPO):$(VERSION)

@@ -56,6 +56,8 @@ RUN pip install -e 'git+https://github.com/okfn/ckan.git@ckan-2.5.5#egg=ckan'
 
 RUN pip install -r /opt/ckan/src/ckan/requirements.txt
 
+RUN pip install ckanapi
+
 RUN pip install gevent
 
 RUN mkdir -p /etc/ckan/default
@@ -120,7 +122,7 @@ ADD start-ckan.sh /opt/ckan/src/ckan/
 
 # Late in file because it changes a lot. 
 ADD production.ini /etc/ckan/default/production.ini
-ADD production.ini /etc/ckan/default/development.ini
+RUN ln -s  /etc/ckan/default/production.ini /etc/ckan/default/development.ini
 
 # Setup the default config file ( it's a copy of the production file ) so you don't 
 # have to set it with the paster admin commands. 
