@@ -36,6 +36,7 @@ RUN mkdir /usr/java && ln -s /usr/lib/jvm/java-7-openjdk-amd64 /usr/java/default
          
 # And the confusion b/t node and nodejs is crazy .. .
 RUN cp /usr/bin/nodejs /usr/bin/node
+RUN npm config set strict-ssl false # Cert validation errors
 RUN npm install less nodewatch 
 
 # Arg, pip is broken on 14.04 .. 
@@ -51,14 +52,22 @@ RUN python get-pip.py
 RUN mkdir -p /opt/ckan
 WORKDIR /opt/ckan 
 
+ADD requirements.txt /tmp/requirements.txt
+RUN pip install --ignore-installed six -r /tmp/requirements.txt
+
+
+
 #RUN pip install -e 'git+https://github.com/okfn/ckan.git@ckan-2.5.2#egg=ckan'
 RUN pip install -e 'git+https://github.com/okfn/ckan.git@ckan-2.5.5#egg=ckan'
 
-RUN pip install -r /opt/ckan/src/ckan/requirements.txt
 
-RUN pip install ckanapi
+# The requirements were not all pinned, so we eneded up with version problem with six. 
+# the local requirements.txt file is copied from pip freeze from a working installation
+#RUN pip install -r /opt/ckan/src/ckan/requirements.txt
+#RUN pip install ckanapi
+#RUN pip install gevent
 
-RUN pip install gevent
+
 
 RUN mkdir -p /etc/ckan/default
 
