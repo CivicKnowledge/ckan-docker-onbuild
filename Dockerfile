@@ -113,19 +113,19 @@ VOLUME /data
 VOLUME /opt
 
 # Tomcat / solr
-EXPOSE 8080 
+#EXPOSE 8080 
 
 # Postgres
-EXPOSE 5432 
+#EXPOSE 5432 
 
 # CKAN Production
-EXPOSE 80
+#EXPOSE 80
 
 # CKAN Development
-EXPOSE 5000
+#EXPOSE 5000
 
 # For SSH, but must be started by setting $SSH envvar to root password
-EXPOSE 22
+#EXPOSE 22
 
 ADD start-ckan.sh /opt/ckan/src/ckan/
 
@@ -145,6 +145,7 @@ ONBUILD ADD promoted.html /opt/ckan/src/ckan/ckan/templates/home/snippets/promot
 
 ONBUILD ADD database.sql /opt/ckan/src/ckan/dump.db
 
+ONBUILD ADD production.ini /etc/ckan/default/production.ini
 
 ONBUILD RUN service tomcat6 start ; \
     service postgresql start && \
