@@ -47,7 +47,7 @@ ssh-import-id==3.21
 Tempita==0.5.2
 tzlocal==1.2
 unicodecsv==0.14.1
-urllib3==1.7.1
+urllib3==1.26.5
 vdm==0.13
 virtualenv==1.11.4
 WebError==0.11
