@@ -12,7 +12,7 @@ Genshi==0.6
 gevent==1.2.2
 greenlet==0.4.13
 gunicorn==17.5
-html5lib==0.999
+html5lib==0.99999999
 Jinja2==2.6
 Mako==1.0.2
 Markdown==2.4
